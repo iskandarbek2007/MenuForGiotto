@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000"><title>Giotto · Столики и заказы</title>
+<meta name="description" content="Рабочее меню Giotto для официантов: 30 столиков, поиск блюд и сохранение заказов.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=5">
+<script src="menu.js?v=5" defer></script><script src="app.js?v=5" defer></script>
+</head>
+<body>
+<aside class="rail">
+<a class="brand" href="#tables" aria-label="Giotto — столики">giotto<span>RISTORANTE</span></a>
+<div class="rail-label">РАБОЧЕЕ МЕСТО</div>
+<nav aria-label="Основная навигация"><a href="#tables" id="tablesNav"><span aria-hidden="true">▦</span> Столики <small>30</small></a><a href="#menu" id="menuNav"><span aria-hidden="true">≡</span> Меню <small id="menuCount"></small></a></nav>
+<div class="rail-bottom"><span class="device-icon" aria-hidden="true">▣</span><b>На этом устройстве</b><p>Заказы сохраняются в этом браузере. Используйте один браузер для работы.</p><a href="https://fergana.menu-giotto.uz/" target="_blank" rel="noopener">Меню Giotto · Фергана ↗</a></div>
+</aside>
+<div class="workspace">
+<header class="topbar"><div class="breadcrumb" id="breadcrumb">Ресторан <span>/</span> Столики</div><div class="save-state" id="saveState" role="status">Автосохранение включено</div></header>
+<div class="storage-error" id="storageError" role="alert" hidden></div>
+<main id="main">
+<section id="tablesView">
+<div class="page-heading"><div><p class="eyebrow">ЗАЛ РЕСТОРАНА</p><h1>Столики</h1><p class="subtitle">Выберите столик, чтобы принять заказ.</p></div><div class="today" id="today"></div></div>
+<div class="stats"><article><span>Всего столиков</span><strong>30 <small>в зале</small></strong></article><article><span>С заказами</span><strong id="busyStat">0</strong></article><article><span>Свободно</span><strong id="freeStat">30</strong></article><article><span>Сумма открытых заказов</span><strong class="sum-stat" id="totalStat">0 <small>сум</small></strong></article></div>
+<div class="section-toolbar"><div class="segments" id="tableFilters" aria-label="Фильтр столиков"><button class="selected" data-filter="all">Все столики</button><button data-filter="busy">С заказами</button><button data-filter="free">Свободные</button></div><span class="legend"><i></i> Есть заказ</span></div>
+<div class="table-grid" id="tableGrid"></div><p class="empty" id="tablesEmpty" hidden>Столиков с заказами пока нет.</p>
+</section>
+<section id="orderView" hidden>
+<div class="page-heading order-heading"><div><a class="back-link" href="#tables">‹ Все столики</a><h1 id="orderTitle">Меню</h1><p class="subtitle" id="orderSubtitle">Выберите столик для добавления блюд.</p></div><label class="table-select-label">Столик<select id="tableSelect" aria-label="Выбрать столик"><option value="">Выберите столик</option></select></label></div>
+<div class="order-layout"><div class="catalog"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Поиск блюда или ингредиента…" autocomplete="off" aria-label="Поиск блюда"><kbd>/</kbd></label><div class="catalog-toolbar"><label>Категория<select id="categorySelect" aria-label="Категория блюд"></select></label><span id="resultCount"></span></div><div class="category-chips" id="categoryChips"></div><div class="dish-grid" id="dishGrid"></div><p class="empty" id="dishesEmpty" hidden>Ничего не найдено. Попробуйте другой запрос.</p></div>
+<aside class="order-panel" id="orderPanel" aria-labelledby="cartTitle"><button class="mobile-cart-close" id="closeCart" aria-label="Закрыть заказ">×</button><div class="panel-header"><div><p class="eyebrow">ТЕКУЩИЙ ЗАКАЗ</p><h2 id="cartTitle">Выберите столик</h2></div><span class="cart-badge" id="cartBadge">0</span></div><div id="cartItems" class="cart-items"></div><div class="cart-footer"><div class="total-line"><span>Итого</span><strong id="cartTotal">0 <small>сум</small></strong></div><p>Без дополнительных сборов</p><button id="clearTable" class="clear-button" disabled>Очистить столик</button><div class="save-caption" id="cartSaved">Заказ сохраняется автоматически</div></div></aside></div>
+</section>
+</main><footer class="page-footer"><span>Giotto · Приём заказов</span><span>Меню от 04.10.2026</span></footer>
+</div>
+<div class="cart-shade" id="cartShade" hidden></div>
+<div class="mobile-order-dock" id="orderDock" hidden><strong id="dockTable"></strong><button id="openCart" aria-controls="orderPanel" aria-expanded="false"><span id="dockCount">Заказ · 0</span><b id="dockTotal">0 сум</b></button></div>
+<dialog id="clearDialog"><div class="dialog-icon" aria-hidden="true">!</div><h2 id="clearDialogTitle">Очистить столик?</h2><p id="clearDialogText"></p><div class="dialog-actions"><button id="cancelClear" class="secondary">Отмена</button><button id="confirmClear" class="danger">Да, очистить</button></div></dialog>
+<dialog id="dishDialog"><button class="close-modal" id="closeDish" aria-label="Закрыть">×</button><img id="detailImage" alt=""><div class="dish-detail"><p id="detailCategory" class="eyebrow"></p><h2 id="detailName"></h2><p id="detailDescription"></p><div class="detail-bottom"><strong id="detailPrice"></strong><button id="detailAdd" class="primary">Добавить в заказ</button></div></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body></html>
